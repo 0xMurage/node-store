@@ -10,6 +10,8 @@ import {ProductController} from '../app/controllers/admin/product.controller';
 import {ProductPriceController} from '../app/controllers/admin/product-price.controller';
 import {ProductImagesController} from '../app/controllers/admin/product-images.controller';
 import {ProductCategoryController} from '../app/controllers/admin/product-category.controller';
+import {OrderController} from '../app/controllers/admin/order.controller';
+import {OrderStatusController} from '../app/controllers/admin/order-status.controller';
 
 
 const router = Router();
@@ -48,6 +50,21 @@ router.route('/products/:code')
 router.route('/products')
     .get((req, res) => ProductController.index(req, res))
     .post((req, res) => ProductController.store(req, res));
+
+
+// {ORDERS + SALES MANAGEMENT}
+
+router.route('/orders/:id/status')
+    .get((req, res) => OrderStatusController.index(req, res))
+    .post((req, res) => OrderStatusController.store(req, res)); //update order status
+
+
+router.route('/orders/:id')
+    .get((req, res) => OrderController.show(req, res));
+
+router.route('/orders')
+    .get((req, res) => OrderController.index(req, res));
+
 
 
 // {SYSTEM USERS MANAGEMENT}
