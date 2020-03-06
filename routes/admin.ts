@@ -5,10 +5,23 @@ import {SessionController} from '../app/controllers/admin/session.controller';
 import {PermissionController} from '../app/controllers/admin/permission.controller';
 import {RoleController} from '../app/controllers/admin/role.controller';
 import {SeederController} from '../app/controllers/admin/seeder.controller';
+import {CustomerController} from '../app/controllers/admin/customer.controller';
+
 
 const router = Router();
 
 // {SYSTEM USERS MANAGEMENT}
+
+router.route('/customers/:id')
+    .get((req, res) => CustomerController.show(req, res))
+    .patch((req, res) => CustomerController.update(req, res))
+    .delete(((req, res) => CustomerController.destroy(req, res)));
+
+router.route('/customers')
+    .get((req, res) => CustomerController.index(req, res))
+    .post((req, res) => CustomerController.store(req, res));
+
+
 
 router.route('/staff/:id')
     .get((req, res) => StaffController.show(req, res))
