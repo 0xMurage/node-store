@@ -8,6 +8,7 @@ bootstrap(); // !IMPORTANT :bootstrap the environment before importing other use
 import {validateJWTTokenMiddleware} from './app/middleware/auth-middleware'
 
 import storeFrontRouter from './routes/store-front';
+import adminRouter from './routes/admin'
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -23,6 +24,7 @@ app.use(validateJWTTokenMiddleware); // Token Authentication middleware
 
 // router definition
 app.use('/api/v1/store-front', storeFrontRouter); // store front for customer endpoints
+app.use('/api/v1/admin', adminRouter); // admin router end point
 
 
 // launch the server
