@@ -1,0 +1,14 @@
+{
+  "watch": [
+    "*"
+  ],
+  "ext": "ts",
+  "ignore": [
+    "node_modules/*",
+    "dist/*",
+    ".idea/*",
+    ".git/*",
+    ".storage/*"
+  ],
+  "exec": "tsc &&  node ./dist/server.js"
+}

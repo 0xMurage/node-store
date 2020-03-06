@@ -1,0 +1,34 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {},
+  "rules": {
+    "await-promise": false,
+    "no-console": false,
+    "curly": true,
+    "max-line-length": [
+      true,
+      120
+    ],
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "variable-name": {
+      "options": [
+        "allow-snake-case",
+        "check-format",
+        "ban-keywords"
+      ]
+    }
+  },
+  "rulesDirectory": [],
+  "linterOptions": {
+    "exclude": [
+      "app/helpers/utils.ts",
+      "app/services/encryption.service.ts"
+    ]
+  }
+}
