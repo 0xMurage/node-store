@@ -10,6 +10,7 @@ import {ShippingAddressController} from '../app/controllers/store-front/shipping
 import {AddressController} from '../app/controllers/store-front/address.controller';
 import {OrderStatusController} from '../app/controllers/store-front/order-status.controller';
 import {PaymentMethodController} from '../app/controllers/store-front/payment-method.controller';
+import {CategoryController} from '../app/controllers/store-front/category.controller';
 
 const router = Router(); // instantiate the router object
 
@@ -72,8 +73,13 @@ router.route('/orders/:code')
     .get((req, res) => OrderController.show(req, res));
 
 router.route('/orders')
-    .get((req, res) => OrderController.index(req, res))
-    .post((req, res) => OrderController.store(req, res));
+    .get((req, res) => OrderController.index(req, res));
+
+router.route('/categories/:id')
+    .get((req, res) => CategoryController.show(req, res));
+
+router.route('/categories')
+    .get((req, res) => CategoryController.index(req, res));
 
 
 // ERROR  routes

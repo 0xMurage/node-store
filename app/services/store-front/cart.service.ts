@@ -133,7 +133,7 @@ export async function fetchCart(req: Request): Promise<Response> {
 
 export async function createCart(req: Request): Promise<Response> {
 
-    //ensure the has no duplicates products. It should increase the quantity not array length
+    // ensure the has no duplicates products. It should increase the quantity not array length
     if (req.body.cart && cartHasDuplicates(req.body.cart)) {
         return {
             code: responseCodes.invalidData,
@@ -222,7 +222,7 @@ export async function updateCart(req: Request): Promise<Response> {
         }
     }
 
-    //ensure the has no duplicates products. It should increase the quantity not array length
+    // ensure the has no duplicates products. It should increase the quantity not array length
     if (req.body.cart && cartHasDuplicates(req.body.cart)) {
         return {
             code: responseCodes.invalidData,
@@ -366,6 +366,6 @@ export async function deleteCart(req: Request): Promise<Response> {
 }
 
 function cartHasDuplicates(cart: { product_id, quantity }[]): boolean {
-    const obj = cart.reduce(((acc, val) => ({...acc, [val.product_id]: (acc[val.product_id] | 0) + 1})), {});
+    const obj = cart.reduce(((acc, val) => ({...acc, [val.product_id]: (acc[val.product_id] || 0) + 1})), {});
     return (Object.keys(obj).filter((id) => obj[id] > 1)).length > 0;
 }
