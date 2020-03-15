@@ -69,7 +69,7 @@ export async function fetchOrder(req: Request) {
 
 export async function createOrder(req: Request) {
 
-    //ensure shopping cart does not have duplicates
+    // ensure shopping cart does not have duplicates
     if(req.body.cart && cartHasDuplicates(req.body.cart)){
         return {
             code: responseCodes.invalidData,
@@ -181,6 +181,6 @@ export async function createOrder(req: Request) {
 }
 
 function cartHasDuplicates(cart: { product_id, quantity }[]):boolean {
-    const obj = cart.reduce(((acc, val) => ({...acc, [val.product_id]: (acc[val.product_id] | 0) + 1})), {});
+    const obj = cart.reduce(((acc, val) => ({...acc, [val.product_id]: (acc[val.product_id] || 0) + 1})), {});
     return (Object.keys(obj).filter((id) => obj[id] > 1)).length > 0;
 }
