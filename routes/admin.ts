@@ -30,7 +30,7 @@ router.route('/products/:code/images/:id')
 
 router.route('/products/:code/images')
     .get((req, res) => ProductImagesController.index(req, res))
-    .post((req, res) => ProductImagesController.store(req, res)); //create new images for product
+    .post((req, res) => ProductImagesController.store(req, res)); // create new images for product
 
 router.route('/products/categories/:id')
     .get((req, res) => ProductCategoryController.show(req, res))
@@ -56,7 +56,7 @@ router.route('/products')
 
 router.route('/orders/:id/status')
     .get((req, res) => OrderStatusController.index(req, res))
-    .post((req, res) => OrderStatusController.store(req, res)); //update order status
+    .post((req, res) => OrderStatusController.store(req, res)); // update order status
 
 
 router.route('/orders/:id')
