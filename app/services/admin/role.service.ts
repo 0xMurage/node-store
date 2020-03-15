@@ -135,7 +135,9 @@ export async function createRole(req: Request): Promise<Response> {
 
 export async function updateRole(req: Request): Promise<Response> {
     // validate first
-    const existingPermissions = (await PermissionModel.findAll({attributes: ['id']})).map((obj) => obj.id);
+    const existingPermissions = (await PermissionModel
+        .findAll({attributes: ['id']}))
+        .map((obj) => obj.id);
 
     const validator = new Validator({
         permissions: new Rule({
@@ -241,7 +243,8 @@ export async function deleteRole(req: Request): Promise<Response> {
             success: false
         }
     }
-    const resp = await RoleModel.destroy({where: {id: req.params.id}, force: true}) // returns 1 if deleted, 0 if not found
+    // returns 1 if deleted, 0 if not found
+    const resp = await RoleModel.destroy({where: {id: req.params.id}, force: true})
         .catch(() => {
             return {
                 code: responseCodes.processError,
