@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as path from 'path';
-
+import * as cors from 'cors';
 import {bootstrap} from './bootstrap/app';
 
 bootstrap(); // !IMPORTANT :bootstrap the environment before importing other user custom modules
@@ -15,6 +15,20 @@ const app = express();
 
 // Middleware definitions
 app.disable('x-powered-by');
+
+// CORS middleware
+const customCOROptions = {
+    origin: (origin, cb) => {
+        if (!process.env.whitelist || process.env.whitelist.indexOf(origin) !== -1) {
+            cb(null, true)
+        } else {
+            cb('Your IP address is not authorized for the request', false)
+        }
+    },
+};
+
+app.use(cors(customCOROptions));
+
 app.use(express.json()); // form data to json
 app.use(express.urlencoded({extended: true})); // support for multiform data
 
