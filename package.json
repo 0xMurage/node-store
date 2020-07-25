@@ -8,7 +8,7 @@
     "start": "nodemon --config nodemon.json",
     "lint": "tslint -c tslint.json --project '.'",
     "build": "tsc",
-    "postbuild": "copyfiles '.htaccess' '.env.json' 'LICENSE.md' ./dist  -s 1"
+    "postbuild": "copyfiles '.htaccess' '.env.json' 'LICENSE.md' ./dist  -s true"
   },
   "keywords": [
     "Express Framework",
